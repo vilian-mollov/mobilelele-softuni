@@ -21,4 +21,38 @@ public class OfferController {
         return modelAndView;
     }
 
+    @GetMapping("/all")
+    public ModelAndView getAllOffers(ModelAndView modelAndView) {
+        modelAndView.setViewName("offers");
+        return modelAndView;
+    }
+
+    @GetMapping("/details")
+    public ModelAndView getOfferDetails(ModelAndView modelAndView) {
+        modelAndView.setViewName("details");
+        return modelAndView;
+    }
+
+
+    @GetMapping("/update")
+    public ModelAndView getUpdateOffer(ModelAndView modelAndView) {
+        modelAndView.setViewName("update");
+        return modelAndView;
+    }
+
+    @PostMapping("/update")
+    public ModelAndView updateOffer(ModelAndView modelAndView) {
+        modelAndView.setViewName("update");
+        //todo update offer
+        return modelAndView;
+    }
+
+    @DeleteMapping("/delete")
+    public ModelAndView deleteOffer(ModelAndView modelAndView) {
+        modelAndView.setViewName("redirect:/offers/all");
+        //todo delete offer
+        return modelAndView;
+    }
+
+
 }

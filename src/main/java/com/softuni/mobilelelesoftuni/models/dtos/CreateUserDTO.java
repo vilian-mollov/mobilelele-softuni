@@ -2,7 +2,7 @@ package com.softuni.mobilelelesoftuni.models.dtos;
 
 import com.softuni.mobilelelesoftuni.models.entities.UserRole;
 
-public class UserImportDTO {
+public class CreateUserDTO {
     private String firstName;
 
     private String lastName;
