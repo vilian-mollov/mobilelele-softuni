@@ -22,4 +22,18 @@ public class UserController {
         return modelAndView;
     }
 
+
+    @GetMapping("/login")
+    public ModelAndView getUsersLogin(ModelAndView modelAndView) {
+        modelAndView.setViewName("auth-login");
+        return modelAndView;
+    }
+
+    @PostMapping("/login")
+    public ModelAndView loginUser(ModelAndView modelAndView) {
+        modelAndView.setViewName("auth-login");
+        //todo login user
+        return modelAndView;
+    }
+
 }
