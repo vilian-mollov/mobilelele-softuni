@@ -9,15 +9,11 @@ public class UserRole extends BaseEntity{
 
     private Role name;
 
-    @OneToOne(targetEntity = User.class)
-    private User user;
-
     public UserRole() {
     }
 
-    public UserRole(Role name, User user) {
+    public UserRole(Role name) {
         this.name = name;
-        this.user = user;
     }
 
     public Role getName() {
@@ -28,11 +24,4 @@ public class UserRole extends BaseEntity{
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

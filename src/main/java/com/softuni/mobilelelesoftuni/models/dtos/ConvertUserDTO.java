@@ -1,19 +1,19 @@
 package com.softuni.mobilelelesoftuni.models.dtos;
 
 import com.softuni.mobilelelesoftuni.models.entities.UserRole;
-import com.softuni.mobilelelesoftuni.models.entities.enums.Role;
 
-public class CreateUserDTO {
-    private String firstName;
 
-    private String lastName;
+public class ConvertUserDTO {
 
-    private String username;
+        private String firstName;
 
-    private String password;
+        private String lastName;
 
-    private Role role;
+        private String username;
 
+        private String password;
+
+        private UserRole role;
 
     public String getFirstName() {
         return firstName;
@@ -47,11 +47,12 @@ public class CreateUserDTO {
         this.password = password;
     }
 
-    public Role getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 }
+

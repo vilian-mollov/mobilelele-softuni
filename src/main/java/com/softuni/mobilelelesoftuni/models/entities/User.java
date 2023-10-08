@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User extends BaseEntity{
 
     @Column
@@ -32,6 +32,7 @@ public class User extends BaseEntity{
     private Timestamp modified;
 
     @OneToOne(targetEntity = UserRole.class)
+    @JoinColumn(name = "role_id",referencedColumnName = "id")
     private UserRole role;
 
     public User() {
