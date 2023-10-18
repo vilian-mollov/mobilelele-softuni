@@ -1,6 +1,7 @@
 package com.softuni.mobilelelesoftuni.web;
 
 import com.softuni.mobilelelesoftuni.models.dtos.CreateUserDTO;
+import com.softuni.mobilelelesoftuni.models.dtos.LoginUserDTO;
 import com.softuni.mobilelelesoftuni.models.entities.enums.Role;
 import com.softuni.mobilelelesoftuni.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ModelAndView registerUser(ModelAndView modelAndView, CreateUserDTO createUserDTO) {
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/home");
         userService.createUser(createUserDTO);
         return modelAndView;
     }
@@ -39,9 +40,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ModelAndView loginUser(ModelAndView modelAndView) {
-        modelAndView.setViewName("auth-login");
-        //todo login user
+    public ModelAndView loginUser(ModelAndView modelAndView, LoginUserDTO loginUserDTO) {
+        modelAndView.setViewName("redirect:/home");
+        userService.loginUser(loginUserDTO);
         return modelAndView;
     }
 
