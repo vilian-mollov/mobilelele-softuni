@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
             currentUser.setFirstName(user.getFirstName());
             currentUser.setLastName(user.getLastName());
             currentUser.setUsername(user.getUsername());
-            currentUser.setRole(user.getRole().getName());
+            currentUser.setRole(user.getRole().getName().toString());
 
         }
 

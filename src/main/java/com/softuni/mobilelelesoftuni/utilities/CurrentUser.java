@@ -13,7 +13,7 @@ public class CurrentUser {
     private String username;
     private boolean isLogged;
 
-    private Role role;
+    private String role;
 
 
     public String getFirstName() {
@@ -57,11 +57,11 @@ public class CurrentUser {
         setUsername(null);
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public CurrentUser setRole(Role role) {
+    public CurrentUser setRole(String role) {
         this.role = role;
         return this;
     }
