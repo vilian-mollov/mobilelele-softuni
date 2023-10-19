@@ -1,13 +1,20 @@
 package com.softuni.mobilelelesoftuni.models.dtos;
 
-import com.softuni.mobilelelesoftuni.models.entities.UserRole;
 import com.softuni.mobilelelesoftuni.models.entities.enums.Role;
+import jakarta.validation.constraints.*;
 
 public class CreateUserDTO {
+
+    @NotNull
+    @Size(min = 2)
     private String firstName;
 
+    @NotNull
+    @Size(min = 2)
     private String lastName;
 
+    @NotNull
+    @Size(min = 2)
     private String username;
 
     private String password;
