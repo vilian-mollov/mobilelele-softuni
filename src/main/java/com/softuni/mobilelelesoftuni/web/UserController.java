@@ -27,7 +27,7 @@ public class UserController {
         modelAndView.addObject("roles", Role.values());
 
         if(!modelAndView.getModelMap().containsAttribute("createUserDTO")){
-            modelAndView.addObject("createUserDTO", new CreateUserDTO());
+            modelAndView.getModelMap().addAttribute("createUserDTO", new CreateUserDTO());
         }
 
 
@@ -35,15 +35,15 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerUser(@Valid CreateUserDTO createUserDTO,
+    public ModelAndView registerUser(@Valid  @ModelAttribute("createUserDTO") CreateUserDTO createUserDTO,
                                      BindingResult bindingResult,
                                      RedirectAttributes rAtt,
                                      ModelAndView modelAndView) {
 
         if(bindingResult.hasErrors()){
+            modelAndView.setViewName("redirect:/users/register");
             rAtt.addFlashAttribute("createUserDTO", createUserDTO);
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.createUserDTO", bindingResult);
-            modelAndView.setViewName("redirect:/users/register");
             return modelAndView;
         }
 
