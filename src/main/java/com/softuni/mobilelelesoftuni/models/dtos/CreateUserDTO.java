@@ -3,7 +3,7 @@ package com.softuni.mobilelelesoftuni.models.dtos;
 import com.softuni.mobilelelesoftuni.models.entities.enums.Role;
 import jakarta.validation.constraints.*;
 
-public final class CreateUserDTO {
+public class CreateUserDTO {
 
     @NotNull
     @Size(min = 2,max = 20)

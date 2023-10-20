@@ -6,6 +6,7 @@ import com.softuni.mobilelelesoftuni.models.entities.enums.Role;
 import com.softuni.mobilelelesoftuni.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,34 +23,30 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public ModelAndView getUsersRegister(ModelAndView modelAndView) {
-        modelAndView.setViewName("auth-register");
-        modelAndView.addObject("roles", Role.values());
+    public String register(Model model) {
 
-        if(!modelAndView.getModelMap().containsAttribute("createUserDTO")){
-            modelAndView.getModelMap().addAttribute("createUserDTO", new CreateUserDTO());
+        if (!model.containsAttribute("createUserDTO")) {
+            model.addAttribute("createUserDTO", new CreateUserDTO());
         }
 
+        model.addAttribute("roles", Role.values());
 
-        return modelAndView;
+        return "auth-register";
     }
 
     @PostMapping("/register")
-    public ModelAndView registerUser(@Valid  @ModelAttribute("createUserDTO") CreateUserDTO createUserDTO,
+    public String register(@Valid  @ModelAttribute("createUserDTO") CreateUserDTO createUserDTO,
                                      BindingResult bindingResult,
-                                     RedirectAttributes rAtt,
-                                     ModelAndView modelAndView) {
+                                     RedirectAttributes rAtt) {
 
         if(bindingResult.hasErrors()){
-            modelAndView.setViewName("redirect:/users/register");
             rAtt.addFlashAttribute("createUserDTO", createUserDTO);
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.createUserDTO", bindingResult);
-            return modelAndView;
+            return "redirect:/users/register";
         }
 
-        modelAndView.setViewName("redirect:/home");
         userService.createUser(createUserDTO);
-        return modelAndView;
+        return "redirect:/home";
     }
 
 
