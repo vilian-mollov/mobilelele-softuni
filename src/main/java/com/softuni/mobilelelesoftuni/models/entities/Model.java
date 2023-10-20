@@ -30,7 +30,7 @@ public class Model extends BaseEntity{
     @Column
     private Timestamp modified;
 
-    @OneToOne(targetEntity = Brand.class)
+    @ManyToOne
     private Brand brand;
 
     public Model() {

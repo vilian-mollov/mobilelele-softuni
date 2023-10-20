@@ -3,6 +3,7 @@ package com.softuni.mobilelelesoftuni.models.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "brand")
@@ -16,6 +17,12 @@ public class Brand extends BaseEntity{
 
     @Column
     private Timestamp modified;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "brand"
+    )
+    private List<Model> models;
 
     public Brand() {
     }
@@ -48,5 +55,13 @@ public class Brand extends BaseEntity{
 
     public void setModified(Timestamp modified) {
         this.modified = modified;
+    }
+
+    public List<Model> getModels() {
+        return models;
+    }
+
+    public void setModels(List<Model> models) {
+        this.models = models;
     }
 }
