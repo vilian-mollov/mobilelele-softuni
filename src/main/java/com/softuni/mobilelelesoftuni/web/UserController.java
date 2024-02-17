@@ -1,7 +1,6 @@
 package com.softuni.mobilelelesoftuni.web;
 
 import com.softuni.mobilelelesoftuni.models.dtos.CreateUserDTO;
-import com.softuni.mobilelelesoftuni.models.dtos.LoginUserDTO;
 import com.softuni.mobilelelesoftuni.models.entities.enums.Role;
 import com.softuni.mobilelelesoftuni.services.UserService;
 import jakarta.validation.Valid;
@@ -51,15 +50,8 @@ public class UserController {
 
 
     @GetMapping("/login")
-    public ModelAndView getUsersLogin(ModelAndView modelAndView) {
+    public ModelAndView login(ModelAndView modelAndView) {
         modelAndView.setViewName("auth-login");
-        return modelAndView;
-    }
-
-    @PostMapping("/login")
-    public ModelAndView loginUser(ModelAndView modelAndView, LoginUserDTO loginUserDTO) {
-        modelAndView.setViewName("redirect:/home");
-        userService.loginUser(loginUserDTO);
         return modelAndView;
     }
 
