@@ -46,7 +46,8 @@ public class DataInitializer implements CommandLineRunner {
             user.setLastName("Musk" + i);
             user.setActive(true);
             user.setUsername("user" + i);
-            user.setPassword("test" + i);
+            //test
+            user.setPassword("95c1933b8ffe84f085f2839899d1673260be58dbd9c2c787ac35515805502c996417596dae9a92880aaa50a046fc7151");
             user.setCreated(time);
             user.setModified(time);
 
