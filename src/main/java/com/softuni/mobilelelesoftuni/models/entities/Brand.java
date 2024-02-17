@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "brand")
-public class Brand extends BaseEntity{
+public class Brand extends BaseEntity {
 
     @Column
     private String name;

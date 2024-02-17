@@ -19,8 +19,6 @@ public class DataInitializer implements CommandLineRunner {
 
     private UserRepository userRepository;
     private UserRoleRepository userRoleRepository;
-
-//    private final String defaultAdminPass;
     private final String test_p;
 
     @Autowired
@@ -65,11 +63,7 @@ public class DataInitializer implements CommandLineRunner {
                 user.setRoles(List.of(userRole));
             }
 
-
             userRepository.save(user);
-
         }
-
-
     }
 }

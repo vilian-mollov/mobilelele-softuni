@@ -20,17 +20,17 @@ public class MobileleleUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository
-                    .findByUsername(username)
-                    .map(MobileleleUserDetailsService::map)
-                    .orElseThrow(() -> new UsernameNotFoundException("User " + username + "mot found!"));
+                .findByUsername(username)
+                .map(MobileleleUserDetailsService::map)
+                .orElseThrow(() -> new UsernameNotFoundException("User " + username + "mot found!"));
     }
 
-    private static UserDetails map(com.softuni.mobilelelesoftuni.models.entities.User user){
+    private static UserDetails map(com.softuni.mobilelelesoftuni.models.entities.User user) {
         return User
-                    .withUsername(user.getUsername())
-                    .password(user.getPassword())
-                    .authorities(user.getRoles().stream().map(MobileleleUserDetailsService::map).toList())
-                    .build();
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .authorities(user.getRoles().stream().map(MobileleleUserDetailsService::map).toList())
+                .build();
     }
 
     private static GrantedAuthority map(UserRole userRole) {

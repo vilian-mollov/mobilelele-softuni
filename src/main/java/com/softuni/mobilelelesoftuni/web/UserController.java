@@ -34,11 +34,11 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid  @ModelAttribute("createUserDTO") CreateUserDTO createUserDTO,
-                                     BindingResult bindingResult,
-                                     RedirectAttributes rAtt) {
+    public String register(@Valid @ModelAttribute("createUserDTO") CreateUserDTO createUserDTO,
+                           BindingResult bindingResult,
+                           RedirectAttributes rAtt) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             rAtt.addFlashAttribute("createUserDTO", createUserDTO);
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.createUserDTO", bindingResult);
             return "redirect:/users/register";

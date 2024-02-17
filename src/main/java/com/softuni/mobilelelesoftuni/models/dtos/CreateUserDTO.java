@@ -6,19 +6,19 @@ import jakarta.validation.constraints.*;
 public class CreateUserDTO {
 
     @NotNull
-    @Size(min = 2,max = 20)
+    @Size(min = 2, max = 20)
     private String firstName;
 
     @NotNull
-    @Size(min = 2,max = 20)
+    @Size(min = 2, max = 20)
     private String lastName;
 
     @NotNull
-    @Size(min = 2,max = 20)
+    @Size(min = 2, max = 20)
     private String username;
 
     @NotNull
-    @Size(min = 2,max = 20)
+    @Size(min = 2, max = 20)
     private String password;
 
     private Role role;

@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "model")
-public class Model extends BaseEntity{
+public class Model extends BaseEntity {
 
     @Column
     private String name;

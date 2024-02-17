@@ -8,20 +8,8 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfiguration {
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-
-//    @Bean
-//    public Gson gson(){
-//        return new GsonBuilder().setPrettyPrinting().create();
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder(){
-//        return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
-//    }
-
-
 
 }

@@ -24,6 +24,7 @@ public class SecurityConfiguration {
                                  String rememberMeKey) {
         this.rememberMeKey = rememberMeKey;
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(
