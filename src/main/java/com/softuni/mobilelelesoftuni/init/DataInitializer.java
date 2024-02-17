@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -30,29 +31,34 @@ public class DataInitializer implements CommandLineRunner {
 
         Timestamp time = Timestamp.valueOf(LocalDateTime.now());
 
-        for (int i = 1; i <= 10; i++) {
-        User user = new User();
-        user.setFirstName("Elon" + i);
-        user.setLastName("Musk" + i);
-        user.setActive(true);
-        user.setUsername("user" + i);
-        user.setPassword("text" + i);
-        user.setCreated(time);
-        user.setModified(time);
-
-        userRepository.save(user);
-
+        UserRole adminRole = new UserRole();
         UserRole userRole = new UserRole();
-        if(i % 3 == 0){
-            userRole.setName(Role.Admin);
-        }else {
-            userRole.setName(Role.User);
-        }
 
+        adminRole.setRole(Role.Admin);
+        userRole.setRole(Role.User);
+
+        userRoleRepository.save(adminRole);
         userRoleRepository.save(userRole);
 
-        user.setRole(userRole);
-        userRepository.save(user);
+        for (int i = 1; i <= 10; i++) {
+            User user = new User();
+            user.setFirstName("Elon" + i);
+            user.setLastName("Musk" + i);
+            user.setActive(true);
+            user.setUsername("user" + i);
+            user.setPassword("test" + i);
+            user.setCreated(time);
+            user.setModified(time);
+
+
+            if (i % 3 == 0) {
+                user.setRole(List.of(userRole, adminRole));
+            } else {
+                user.setRole(List.of(userRole));
+            }
+
+
+            userRepository.save(user);
 
         }
 

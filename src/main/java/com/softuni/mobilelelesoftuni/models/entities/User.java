@@ -3,6 +3,8 @@ package com.softuni.mobilelelesoftuni.models.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
@@ -31,14 +33,17 @@ public class User extends BaseEntity{
     @Column
     private Timestamp modified;
 
-    @OneToOne(targetEntity = UserRole.class)
-    @JoinColumn(name = "role_id",referencedColumnName = "id")
-    private UserRole role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<UserRole> role;
 
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, Boolean isActive, String imageUrl, Timestamp created, Timestamp modified, UserRole role) {
+    public User(String username, String password, String firstName, String lastName, Boolean isActive, String imageUrl, Timestamp created, Timestamp modified, List<UserRole> role) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -114,11 +119,11 @@ public class User extends BaseEntity{
         this.modified = modified;
     }
 
-    public UserRole getRole() {
+    public List<UserRole> getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(List<UserRole> role) {
         this.role = role;
     }
 }
