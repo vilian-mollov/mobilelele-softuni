@@ -1,7 +1,9 @@
 package com.softuni.mobilelelesoftuni.config;
 
+import com.softuni.mobilelelesoftuni.models.entities.enums.Role;
 import com.softuni.mobilelelesoftuni.repositories.UserRepository;
 import com.softuni.mobilelelesoftuni.services.impl.MobileleleUserDetailsService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
+    private final String rememberMeKey;
+
+    public SecurityConfiguration(@Value("${mobilele.remember.me.key}")
+                                 String rememberMeKey) {
+        this.rememberMeKey = rememberMeKey;
+    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(
@@ -24,6 +32,7 @@ public class SecurityConfiguration {
                         // Allow anyone to see the home page, the registration page and the login form
                         .requestMatchers("/", "/users/login", "/users/register").permitAll()
                         .requestMatchers("/offers/all").permitAll()
+                        .requestMatchers("/brands/all").hasRole(Role.ADMIN.name())
                         // all other requests are authenticated.
                         .anyRequest().authenticated()
         ).formLogin(
@@ -47,6 +56,13 @@ public class SecurityConfiguration {
                             .logoutSuccessUrl("/")
                             // invalidate the HTTP session
                             .invalidateHttpSession(true);
+                }
+        ).rememberMe(
+                rememberMe -> {
+                    rememberMe
+                            .key(rememberMeKey)
+                            .rememberMeParameter("rememberme")
+                            .rememberMeCookieName("rememberme");
                 }
         ).build();
     }

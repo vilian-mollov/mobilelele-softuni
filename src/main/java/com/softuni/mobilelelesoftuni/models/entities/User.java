@@ -38,12 +38,12 @@ public class User extends BaseEntity{
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<UserRole> role;
+    private List<UserRole> roles;
 
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, Boolean isActive, String imageUrl, Timestamp created, Timestamp modified, List<UserRole> role) {
+    public User(String username, String password, String firstName, String lastName, Boolean isActive, String imageUrl, Timestamp created, Timestamp modified, List<UserRole> roles) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -52,7 +52,7 @@ public class User extends BaseEntity{
         this.imageUrl = imageUrl;
         this.created = created;
         this.modified = modified;
-        this.role = role;
+        this.roles = roles;
     }
 
     public String getUsername() {
@@ -119,12 +119,12 @@ public class User extends BaseEntity{
         this.modified = modified;
     }
 
-    public List<UserRole> getRole() {
-        return role;
+    public List<UserRole> getRoles() {
+        return roles;
     }
 
-    public void setRole(List<UserRole> role) {
-        this.role = role;
+    public void setRoles(List<UserRole> role) {
+        this.roles = role;
     }
 }
 

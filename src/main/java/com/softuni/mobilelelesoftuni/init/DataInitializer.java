@@ -6,6 +6,7 @@ import com.softuni.mobilelelesoftuni.models.entities.enums.Role;
 import com.softuni.mobilelelesoftuni.repositories.UserRepository;
 import com.softuni.mobilelelesoftuni.repositories.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +20,15 @@ public class DataInitializer implements CommandLineRunner {
     private UserRepository userRepository;
     private UserRoleRepository userRoleRepository;
 
+    private final String defaultAdminPass;
+
     @Autowired
-    public DataInitializer(UserRepository userRepository,
+    public DataInitializer(@Value("${mobilele.default.admin.pass}") String defaultAdminPass,
+                           UserRepository userRepository,
                            UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
+        this.defaultAdminPass = defaultAdminPass;
     }
 
     @Override
@@ -34,8 +39,8 @@ public class DataInitializer implements CommandLineRunner {
         UserRole adminRole = new UserRole();
         UserRole userRole = new UserRole();
 
-        adminRole.setRole(Role.Admin);
-        userRole.setRole(Role.User);
+        adminRole.setRole(Role.ADMIN);
+        userRole.setRole(Role.USER);
 
         userRoleRepository.save(adminRole);
         userRoleRepository.save(userRole);
@@ -53,9 +58,9 @@ public class DataInitializer implements CommandLineRunner {
 
 
             if (i % 3 == 0) {
-                user.setRole(List.of(userRole, adminRole));
+                user.setRoles(List.of(userRole, adminRole));
             } else {
-                user.setRole(List.of(userRole));
+                user.setRoles(List.of(userRole));
             }
 
 
