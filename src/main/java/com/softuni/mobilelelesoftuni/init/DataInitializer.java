@@ -20,15 +20,17 @@ public class DataInitializer implements CommandLineRunner {
     private UserRepository userRepository;
     private UserRoleRepository userRoleRepository;
 
-    private final String defaultAdminPass;
+//    private final String defaultAdminPass;
+    private final String test_p;
 
     @Autowired
-    public DataInitializer(@Value("${mobilele.default.admin.pass}") String defaultAdminPass,
+    public DataInitializer(@Value("${mobilelele.test_p}") String test_p,
                            UserRepository userRepository,
                            UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
-        this.defaultAdminPass = defaultAdminPass;
+//        this.defaultAdminPass = defaultAdminPass;
+        this.test_p = test_p;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class DataInitializer implements CommandLineRunner {
             user.setActive(true);
             user.setUsername("user" + i);
             //test
-            user.setPassword("95c1933b8ffe84f085f2839899d1673260be58dbd9c2c787ac35515805502c996417596dae9a92880aaa50a046fc7151");
+            user.setPassword(test_p);
             user.setCreated(time);
             user.setModified(time);
 

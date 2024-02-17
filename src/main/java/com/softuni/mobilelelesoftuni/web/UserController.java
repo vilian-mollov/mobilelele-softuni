@@ -55,4 +55,15 @@ public class UserController {
         return modelAndView;
     }
 
+    @PostMapping("/login-error")
+    public String onFailure(
+            @ModelAttribute("username") String username,
+            Model model) {
+
+        model.addAttribute("username", username);
+        model.addAttribute("bad_credentials", "true");
+
+        return "auth-login";
+    }
+
 }

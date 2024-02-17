@@ -18,7 +18,7 @@ public class SecurityConfiguration {
 
     private final String rememberMeKey;
 
-    public SecurityConfiguration(@Value("${mobilele.remember.me.key}")
+    public SecurityConfiguration(@Value("${mobilelele.remember.me.key}")
                                  String rememberMeKey) {
         this.rememberMeKey = rememberMeKey;
     }
