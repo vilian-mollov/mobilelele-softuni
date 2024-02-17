@@ -7,6 +7,4 @@ public interface UserService {
 
     Boolean createUser(CreateUserDTO createUserDTO);
 
-    Boolean loginUser(LoginUserDTO loginUserDTO);
-
 }
