@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-      <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>MobiLeLeLe</title>
     <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
@@ -14,7 +14,7 @@
 <body>
 
 <div>
-     <nav th:replace="~{fragments/nav}"></nav>
+    <nav th:replace="~{fragments/nav}"></nav>
 </div>
 
 <div class="container">
@@ -26,12 +26,12 @@
         <div class="row">
             <div class="form-group col-md-6 mb-3">
                 <label for="firstName" class="text-white font-weight-bold">First Name</label>
-                <input  id="firstName"
-                        th:name="firstName"
-                        th:field="*{firstName}"
-                        th:errorclass="is-invalid"
-                        type="text"
-                        class="form-control"
+                <input id="firstName"
+                       th:name="firstName"
+                       th:field="*{firstName}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control"
                        placeholder="First name"/>
                 <p class="invalid-feedback errors alert alert-danger">
                     First name is required.
@@ -107,7 +107,7 @@
 </div>
 
 <div>
-     <footer> </footer>
+    <footer></footer>
 </div>
 
 </body>

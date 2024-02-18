@@ -3,9 +3,11 @@ package com.softuni.mobilelelesoftuni.models.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     @Column
     private String username;
@@ -31,14 +33,17 @@ public class User extends BaseEntity{
     @Column
     private Timestamp modified;
 
-    @OneToOne(targetEntity = UserRole.class)
-    @JoinColumn(name = "role_id",referencedColumnName = "id")
-    private UserRole role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<UserRole> roles;
 
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, Boolean isActive, String imageUrl, Timestamp created, Timestamp modified, UserRole role) {
+    public User(String username, String password, String firstName, String lastName, Boolean isActive, String imageUrl, Timestamp created, Timestamp modified, List<UserRole> roles) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -47,7 +52,7 @@ public class User extends BaseEntity{
         this.imageUrl = imageUrl;
         this.created = created;
         this.modified = modified;
-        this.role = role;
+        this.roles = roles;
     }
 
     public String getUsername() {
@@ -114,12 +119,12 @@ public class User extends BaseEntity{
         this.modified = modified;
     }
 
-    public UserRole getRole() {
-        return role;
+    public List<UserRole> getRoles() {
+        return roles;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public void setRoles(List<UserRole> role) {
+        this.roles = role;
     }
 }
 

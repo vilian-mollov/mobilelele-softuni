@@ -34,11 +34,11 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid  @ModelAttribute("createUserDTO") CreateUserDTO createUserDTO,
-                                     BindingResult bindingResult,
-                                     RedirectAttributes rAtt) {
+    public String register(@Valid @ModelAttribute("createUserDTO") CreateUserDTO createUserDTO,
+                           BindingResult bindingResult,
+                           RedirectAttributes rAtt) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             rAtt.addFlashAttribute("createUserDTO", createUserDTO);
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.createUserDTO", bindingResult);
             return "redirect:/users/register";
@@ -53,6 +53,17 @@ public class UserController {
     public ModelAndView login(ModelAndView modelAndView) {
         modelAndView.setViewName("auth-login");
         return modelAndView;
+    }
+
+    @PostMapping("/login-error")
+    public String onFailure(
+            @ModelAttribute("username") String username,
+            Model model) {
+
+        model.addAttribute("username", username);
+        model.addAttribute("bad_credentials", "true");
+
+        return "auth-login";
     }
 
 }

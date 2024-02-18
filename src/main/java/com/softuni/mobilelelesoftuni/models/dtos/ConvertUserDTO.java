@@ -5,15 +5,15 @@ import com.softuni.mobilelelesoftuni.models.entities.UserRole;
 
 public class ConvertUserDTO {
 
-        private String firstName;
+    private String firstName;
 
-        private String lastName;
+    private String lastName;
 
-        private String username;
+    private String username;
 
-        private String password;
+    private String password;
 
-        private UserRole role;
+    private UserRole role;
 
     public String getFirstName() {
         return firstName;

@@ -35,7 +35,7 @@ public class OfferController {
             model.addAttribute("createOfferDTO", new CreateOfferDTO());
         }
 
-        model.addAttribute("brands", brandService.getAllBrands() );
+        model.addAttribute("brands", brandService.getAllBrands());
 
         return "offer-add";
     }
@@ -46,7 +46,7 @@ public class OfferController {
             BindingResult bindingResult,
             RedirectAttributes rAtt) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             rAtt.addFlashAttribute("createOfferDTO", createOfferDTO);
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.createOfferDTO", bindingResult);
             return "redirect:/offers/add";

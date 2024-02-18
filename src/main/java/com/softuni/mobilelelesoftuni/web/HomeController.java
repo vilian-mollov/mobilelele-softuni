@@ -7,8 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-    @GetMapping({"/","index", "home"})
-    public ModelAndView getHome(ModelAndView modelAndView){
+    @GetMapping({"/", "index", "home"})
+    public ModelAndView getHome(ModelAndView modelAndView) {
         modelAndView.setViewName("index");
         return modelAndView;
     }

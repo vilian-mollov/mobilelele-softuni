@@ -15,7 +15,7 @@ public final class CreateOfferDTO {
     private Long modelId;
 
     @NotNull
-    private  Engine engine;
+    private Engine engine;
 
     @NotNull
     private Transmission transmission;
@@ -25,16 +25,16 @@ public final class CreateOfferDTO {
 
     @Positive
     @NotNull
-    private   Integer mileage;
+    private Integer mileage;
 
     @Positive
     @NotNull
-    private  Integer price;
+    private Integer price;
 
     @NotNull(message = "Year must be provided!")
     @Min(1930)
     @Max(2099)
-    private  Integer year;
+    private Integer year;
 
 
     public String getDescription() {
