@@ -47,10 +47,10 @@ public class DataInitializer implements CommandLineRunner {
 
         for (int i = 1; i <= 10; i++) {
             User user = new User();
-            user.setFirstName("Elon" + i);
-            user.setLastName("Musk" + i);
+            user.setFirstName("Dracula" + i);
+            user.setLastName("Morningstar" + i);
             user.setActive(true);
-            user.setUsername("user" + i);
+            user.setUsername("draci" + i);
             //test
             user.setPassword(test_p);
             user.setCreated(time);
