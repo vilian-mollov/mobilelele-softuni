@@ -21,6 +21,7 @@ public class Offer extends BaseEntity {
     @Column
     private String description;
     @Column
+    @Enumerated(EnumType.STRING)
     private Engine engine;
     @Column(length = 512)
     private String imageUrl;
@@ -29,6 +30,7 @@ public class Offer extends BaseEntity {
     @Column
     private BigDecimal price;
     @Column
+    @Enumerated(EnumType.STRING)
     private Transmission transmission;
     @Column
     private Integer year;

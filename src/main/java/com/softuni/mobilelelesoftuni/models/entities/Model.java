@@ -13,6 +13,7 @@ public class Model extends BaseEntity {
     private String name;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @Column(length = 512)
