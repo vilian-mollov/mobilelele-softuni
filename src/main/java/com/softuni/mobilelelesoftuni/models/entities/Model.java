@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "model")
+@Table(name = "models")
 public class Model extends BaseEntity {
 
     @Column

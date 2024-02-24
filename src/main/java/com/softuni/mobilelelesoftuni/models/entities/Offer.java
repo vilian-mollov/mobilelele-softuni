@@ -3,14 +3,21 @@ package com.softuni.mobilelelesoftuni.models.entities;
 import com.softuni.mobilelelesoftuni.models.entities.enums.Engine;
 import com.softuni.mobilelelesoftuni.models.entities.enums.Transmission;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.JdbcTypeCode;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.UUID;
 
 @Entity
-@Table(name = "offer")
+@Table(name = "offers")
 public class Offer extends BaseEntity {
 
+    @NotNull
+    @JdbcTypeCode(Types.VARCHAR)
+    private UUID uuid;
     @Column
     private String description;
     @Column
@@ -139,6 +146,14 @@ public class Offer extends BaseEntity {
 
     public void setSeller(User seller) {
         this.seller = seller;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 }
 

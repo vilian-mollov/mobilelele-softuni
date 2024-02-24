@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Table(name = "brand")
+@Table(name = "brands")
 public class Brand extends BaseEntity {
 
     @Column
