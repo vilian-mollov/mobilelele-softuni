@@ -6,13 +6,14 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "model")
+@Table(name = "models")
 public class Model extends BaseEntity {
 
     @Column
     private String name;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @Column(length = 512)

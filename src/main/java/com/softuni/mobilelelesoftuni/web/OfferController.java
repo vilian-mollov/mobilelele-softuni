@@ -1,15 +1,22 @@
 package com.softuni.mobilelelesoftuni.web;
 
 import com.softuni.mobilelelesoftuni.models.dtos.CreateOfferDTO;
+import com.softuni.mobilelelesoftuni.models.dtos.OfferSummaryDTO;
 import com.softuni.mobilelelesoftuni.models.entities.enums.Engine;
 import com.softuni.mobilelelesoftuni.services.BrandService;
+import com.softuni.mobilelelesoftuni.services.OfferService;
 import jakarta.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.data.domain.Pageable;
 
 @Controller
 @RequestMapping("/offers")
@@ -17,9 +24,13 @@ public class OfferController {
 
 
     private final BrandService brandService;
+    private final OfferService offerService;
 
-    public OfferController(BrandService brandService) {
+    @Autowired
+    public OfferController(BrandService brandService,
+                           OfferService offerService) {
         this.brandService = brandService;
+        this.offerService = offerService;
     }
 
 
@@ -59,8 +70,12 @@ public class OfferController {
     }
 
     @GetMapping("/all")
-    public ModelAndView getAllOffers(ModelAndView modelAndView) {
+    public ModelAndView getAllOffers(ModelAndView modelAndView, @PageableDefault(size = 3, sort = "uuid") Pageable pageable) {
+
+        Page<OfferSummaryDTO> allOffers = offerService.getAllOffers(pageable);
+
         modelAndView.setViewName("offers");
+        modelAndView.addObject("offers", allOffers);
         return modelAndView;
     }
 
