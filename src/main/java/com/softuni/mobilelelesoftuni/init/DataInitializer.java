@@ -33,37 +33,32 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        Timestamp time = Timestamp.valueOf(LocalDateTime.now());
+        userRepository.deleteAll();
+        userRoleRepository.deleteAll();
 
         UserRole adminRole = new UserRole();
         UserRole userRole = new UserRole();
 
+        insertRolesToDb(adminRole, userRole);
+
+        Timestamp time = Timestamp.valueOf(LocalDateTime.now());
+
+        User admin = getUser("Jack", "Sparrow", true, "rum_lover", test_p, time, List.of(adminRole, userRole));
+        User user = getUser("Bruse", "Wayne", true, "regular_guy", test_p, time, List.of(userRole));
+
+        userRepository.save(admin);
+        userRepository.save(user);
+    }
+
+    private void insertRolesToDb(UserRole adminRole, UserRole userRole) {
         adminRole.setRole(Role.ADMIN);
         userRole.setRole(Role.USER);
 
         userRoleRepository.save(adminRole);
         userRoleRepository.save(userRole);
+    }
 
-        for (int i = 1; i <= 10; i++) {
-            User user = new User();
-            user.setFirstName("Dracula" + i);
-            user.setLastName("Morningstar" + i);
-            user.setActive(true);
-            user.setUsername("draci" + i);
-            //test
-            user.setPassword(test_p);
-            user.setCreated(time);
-            user.setModified(time);
-
-
-            if (i % 3 == 0) {
-                user.setRoles(List.of(userRole, adminRole));
-            } else {
-                user.setRoles(List.of(userRole));
-            }
-
-            userRepository.save(user);
-        }
+    private static User getUser(String first_name, String last_name, Boolean is_active, String username, String test_p, Timestamp time, List<UserRole> roles) {
+        return new User(username, test_p, first_name, last_name, is_active, "", time, time, roles);
     }
 }
