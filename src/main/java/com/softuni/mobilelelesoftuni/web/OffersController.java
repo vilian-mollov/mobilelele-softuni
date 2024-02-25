@@ -20,15 +20,15 @@ import org.springframework.data.domain.Pageable;
 
 @Controller
 @RequestMapping("/offers")
-public class OfferController {
+public class OffersController {
 
 
     private final BrandService brandService;
     private final OfferService offerService;
 
     @Autowired
-    public OfferController(BrandService brandService,
-                           OfferService offerService) {
+    public OffersController(BrandService brandService,
+                            OfferService offerService) {
         this.brandService = brandService;
         this.offerService = offerService;
     }
